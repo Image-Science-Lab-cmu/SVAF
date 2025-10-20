@@ -9,7 +9,7 @@ Visit the links below for more information:\
 
 ## Getting Started
 
-All simulation codes are in MATLAB. The simulation is based on wave optics.
+All code contains both (1) the interface to control the sensor (Lucid Vision PHX050S1-P/Q) and the spatial light modulator (HOLOEYE GAEA2), and (2) the algorithm to produce the depth map that we use to control focus. 
 
 ## Python program
 
