@@ -15,7 +15,7 @@ All code contains both (1) the interface to control the sensor (Lucid Vision PHX
 
 This program runs vanilla optical flow to perform phase-based autofocus. Detailed code for our CDAF and PDAF algoriothms are coming soon.
 
-#### Dependencies
+### Dependencies
 If you are using a Lucid Vision polarized camera, please download Arena Python API:
 https://dce9ugryut4ao.cloudfront.net/arena_api-2.7.1-py3-none-any.zip
 
@@ -24,7 +24,7 @@ Install additional dependencies:
 pip install -r requirements.txt
 ```
 
-#### Run the python program
+### Run the python program
 How to run:
 1. Please make sure that the camera is turned off in ArenaView before running the python program. The program will have GenICam errors if the camera is already turned on in ArenaView.
 2. Run the following commands.
@@ -34,7 +34,7 @@ python svaf_vanilla.py
 ```
 
 ## C++ program
-#### Dependencies
+### Dependencies
 Go to Lucid Vision Labs website:
 https://thinklucid.com/downloads-hub
 
@@ -53,13 +53,13 @@ C:\path_to_folder\SVAF\dependencies\opencv\build\include
 
 Please make sure to replace `path_to_folder` in `.vcxproj` files with your path that contains this repository.
 
-#### Compile the C++ program
+### Compile the C++ program
 ```
 cd cpp_program
 msbuild svafstream.sln //p:Configuration=Release //p:Platform=x64
 ```
 
-#### Run the C++ program
+### Run the C++ program
 How to run:
 1. Please make sure that the camera is turned off in ArenaView before running the CPP program. The program will have GenICam errors if the camera is already turned on in ArenaView.
 2. Make sure to turn on the lights!
@@ -71,7 +71,7 @@ cd cpp_program
 
 ## Aligning the Optical System
 
-#### Homography
+### Homography
 The entire walkthrough is detailed in `homography/homography.ipynb`. The tutorial includes 
 - generating the checkerboard
 - post-processing the captured image for easy corner detection
@@ -89,7 +89,7 @@ We use a half waveplate (HWP) to rotate the polarization for half of the apertur
 
 Since a half waveplate rotates polarization by $2\theta$ when its fast axis is $\theta$ away from the polarization axis, we need to orient the HWP at **45 degrees** relative to the incoming polarization axis from a linear polarizer.
 
-#### How to align the Half Waveplate and Linear Polarizer
+### How to align the Half Waveplate and Linear Polarizer
 
 We need to figure out this relative orientation before we cut the HWP into half circle shape. To find the orientation, we can to test-orient it by sandwiching it between two orthogonal linear polarizers. Rotate the HWP so that it can pass through all the polarized light through the two orthonal linear polarizers. Mark this relative orientation on **both the first polarizer and the HWP**.
 
