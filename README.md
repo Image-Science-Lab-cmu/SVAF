@@ -9,11 +9,11 @@ Visit the links below for more information:\
 
 ## Getting Started
 
-All code contains both (1) the interface to control the sensor (Lucid Vision PHX050S1-P/Q) and the spatial light modulator (HOLOEYE GAEA2), and (2) the algorithm to produce the depth map that we use to control focus. 
+All code contains both (1) the interface to control the sensor [Lucid Vision PHX050S1-P/Q](https://thinklucid.com/product/phoenix-5-0-mp-polarization-model-imx264mzrmyr/) and the spatial light modulator [HOLOEYE GAEA2 Phase-Only SLM](https://holoeye.com/products/spatial-light-modulators/gaea-2-phase-only/), and (2) the algorithm to produce the depth map that we use to control focus. 
 
 ## Python program
 
-This program runs vanilla optical flow to perform phase-based autofocus. Detailed code for our CDAF and PDAF algoriothms are coming soon.
+This program runs vanilla optical flow to perform spatially-varying phase-based autofocus (PDAF). Detailed code for our spatially-varying CDAF and PDAF algorithms are coming soon.
 
 ### Dependencies
 If you are using a Lucid Vision polarized camera, please download Arena Python API:
@@ -34,6 +34,10 @@ python svaf_vanilla.py
 ```
 
 ## C++ program
+This program performs Spatially-Varying PDAF at 21 FPS on our real-time prototype. An example screen recording of autofocusing a dynamic scene:
+<video src="https://imaging.cs.cmu.edu/svaf/static/videos/dynamic_box_1minute.mp4" controls autoplay></video>
+Please see our [website](https://imaging.cs.cmu.edu/svaf/#dynamic) for more details.
+
 ### Dependencies
 Go to Lucid Vision Labs website:
 https://thinklucid.com/downloads-hub
@@ -72,7 +76,8 @@ cd cpp_program
 ## Aligning the Optical System
 
 ### Homography
-The entire walkthrough is detailed in `homography/homography.ipynb`. The tutorial includes 
+
+We provide code to perform homography between the sensor and the spatial light modulator. The entire walkthrough is detailed in `homography/homography.ipynb`. The tutorial includes 
 - generating the checkerboard
 - post-processing the captured image for easy corner detection
 - detecting the corners
