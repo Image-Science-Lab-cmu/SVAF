@@ -34,9 +34,12 @@ python svaf_vanilla.py
 ```
 
 ## C++ program
-This program performs Spatially-Varying PDAF at 21 FPS on our real-time prototype. An example screen recording of autofocusing a dynamic scene:
-<video src="https://imaging.cs.cmu.edu/svaf/static/videos/dynamic_box_1minute.mp4" controls autoplay></video>
-Please see our [website](https://imaging.cs.cmu.edu/svaf/#dynamic) for more details.
+This program performs Spatially-Varying PDAF at 21 FPS on our real-time prototype. 
+
+An example screen recording of running the program to autofocus a dynamic scene:
+![](static/videos/dynamic_box_1minute.gif)
+
+Please see our [website](https://imaging.cs.cmu.edu/svaf/#dynamic) for a full resolution recording and more details.
 
 ### Dependencies
 Go to Lucid Vision Labs website:
