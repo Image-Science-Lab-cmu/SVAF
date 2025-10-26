@@ -116,16 +116,15 @@ To make the split aperture, we can follow the steps below:
 
 If you use our code or dataset, please cite our paper:
 ```
-@inproceedings{qin2025spatially,
-    author = {Qin, Yingsi and Sankaranarayanan, Aswin C. and O'Toole, Matthew},
-    title = {Spatially-Varying Autofocus},
-    year = {2025},
-    publisher = {IEEE},
-    url = {https://imaging.cs.cmu.edu/svaf/static/pdfs/Spatially_Varying_Autofocus.pdf},
-    booktitle = {2025 IEEE/CVF International Conference on Computer Vision (ICCV)},
-    isbn = {},
-    language = {eng},
-    pages = {},
-    keywords = {All-in-Focus Imaging, Extended Depth of Field, Autofocus Algorithms, Computational Imaging}
-    }
+@InProceedings{qin2025spatially,
+      author    = {Qin, Yingsi and Sankaranarayanan, Aswin C. and O'Toole, Matthew},
+      title     = {Spatially-Varying Autofocus},
+      booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+      publisher = {IEEE},
+      language  = {eng},
+      month     = {October},
+      year      = {2025},
+      pages     = {24645-24654}, 
+      keywords  = {All-in-Focus Imaging, Extended Depth of Field, Autofocus Algorithms, Computational Imaging}
+      }
 ```
