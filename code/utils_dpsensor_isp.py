@@ -1,25 +1,41 @@
-import skimage
+"""Utilities for dual-pixel (DP) sensor capture, ISP helpers, and
+spatially-varying disparity estimation.
+
+This module provides:
+  - Camera device discovery and configuration via the Arena SDK.
+  - Polarisation-aware image acquisition and channel de-interleaving.
+  - 2×2 grid assembly for visualising the four polarisation angles.
+  - Lucas-Kanade-style horizontal optical-flow (disparity) estimation
+    between left/right DP sub-aperture images, with optional superpixel
+    aggregation and joint bilateral filtering.
+  - Superpixel-based segmented statistics (mean / mode) for smoothing
+    per-region disparity maps.
+"""
+
 import time
 import ctypes
+
 import numpy as np
 import cv2
 from skimage import data, segmentation, color
 import pandas as pd
+from skimage import segmentation
 
 from arena_api.buffer import BufferFactory
 from arena_api.system import system
 from arena_api.__future__.save import Writer
 from arena_api.enums import PixelFormat
-
 from arena_api._xlayer.xarena._ximagefactory import _xImagefactory
 from arena_api.buffer import _Buffer
-
-# import numba
-# from numba import jit, njit, prange
 
 TAB1 = "  "
 TAB2 = "    "
 TAB3 = "      "
+
+
+# ---------------------------------------------------------------------------
+# Device discovery & configuration
+# ---------------------------------------------------------------------------
 
 def create_devices_with_tries():
 	'''

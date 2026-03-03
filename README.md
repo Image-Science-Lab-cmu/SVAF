@@ -2,6 +2,8 @@
 
 [Yingsi Qin](https://yingsiqin.github.io/), [Aswin C. Sankaranarayanan](https://users.ece.cmu.edu/~saswin/), [Matthew O'Toole](https://www.cs.cmu.edu/~motoole2/)
 
+> **Please read:** This repository contains the code for our real-time SVAF prototype that uses a custom-built dual-pixel (DP) camera based on a polarized machine vision sensor. This is different from the original prototype with the Canon EOS R10 sensor whose bottleneck was the 0.3 FPS in reading dual-pixel (DP) images. To overcome the lack of off-the-shelf solutions for streaming DP images, we modified a machine vision sensor to enable capturing, reading, and processing DP images at 21 FPS. If you are using a Canon DP sensor instead and would like to extract dual-pixel images from Canon's Dual Pixel RAW image files, please refer to the [Extracting Dual-Pixel Views from Canon RAW Files](#extracting-dual-pixel-views-from-canon-raw-files) section below.
+
 This repository contains both (1) the code for running our autofocus algorithms, and (2) the PDAF hardware code for the real-time prototype, used for [Spatially-Varying Autofocus](https://imaging.cs.cmu.edu/svaf/). 
 
 Visit the links below for more information:\
@@ -13,7 +15,7 @@ All code contains both (1) the interface to control the sensor [Lucid Vision PHX
 
 ## Python program
 
-This program runs vanilla optical flow to perform spatially-varying phase-based autofocus (PDAF). Detailed code for our spatially-varying CDAF and PDAF algorithms are coming soon.
+This program runs vanilla optical flow to perform spatially-varying phase-based autofocus (PDAF). 
 
 ### Dependencies
 If you are using a Lucid Vision polarized camera, please download Arena Python API:
@@ -111,6 +113,48 @@ To make the split aperture, we can follow the steps below:
 7. Open ArenaView to verify that 0 and 90 degrees are seeing the opposite vignetting patterns and that the vignetting is the same between 45 and 135 degree images.
 8. Verify again with real scenes that 0 and 90 degrees see disparity images. Adjust the polarizer if needed.
 9. Done!
+
+## Extracting Dual-Pixel View Images from Canon RAW Files
+
+If you are using a Canon camera with a dual-pixel (DP) sensor instead of the Lucid Vision PHX050S1-P/Q sensor, you can extract the left and right DP view images from `.CR3` RAW files using the `unprocessed_raw` command from the [LibRaw](https://www.libraw.org/) library.
+
+### Install LibRaw
+
+1. Download LibRaw from https://www.libraw.org/download.
+   - **From source:** build the library and the bundled sample programs (in the `samples/` directory). After building, `unprocessed_raw` will be in the `bin/` folder.
+   - **From binaries** (available for macOS 11+ ARM/Intel and Windows 64-bit): `unprocessed_raw` is already in the `bin/` folder.
+2. Make sure `unprocessed_raw` is on your system `PATH`.
+
+Full documentation for LibRaw sample programs: https://www.libraw.org/docs/Samples-LibRaw.html
+
+### Extract DP views via the command line
+
+```bash
+# Extract the A+B (combined) dual-pixel image
+unprocessed_raw -T -s 0 IMG_0001.CR3
+
+# Extract the A-only (single sub-pixel) image
+unprocessed_raw -T -s 1 IMG_0001.CR3
+```
+
+This produces two TIFF files. The B-only (right) view can then be obtained by subtraction: `B = (A+B) − A`.
+
+### Extract DP views using the Python helper
+
+We provide `code/utils_dpraw.py` which wraps the above commands and adds Bayer demosaicing, cropping, and vanilla white balancing:
+
+```python
+from utils_dpraw import extract_dp_images_from_raw
+
+loadfolder = "./static/example_images_canon_dpraw"
+load_image_name = "IMG_0001"
+
+imgrgb_l, imgrgb_r, imgrgb_total = extract_dp_images_from_raw(loadfolder, 
+                                                              load_image_name, 
+                                                              white_balancing=True)
+```
+
+See `code/utils_dpraw.py` for the full set of options including cropping and white balancing.
 
 ## Citation
 
