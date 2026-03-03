@@ -2,7 +2,7 @@
 
 [Yingsi Qin](https://yingsiqin.github.io/), [Aswin C. Sankaranarayanan](https://users.ece.cmu.edu/~saswin/), [Matthew O'Toole](https://www.cs.cmu.edu/~motoole2/)
 
-> **Please read:** This repository contains the code for our real-time SVAF prototype that uses a custom-built dual-pixel (DP) camera based on a polarized machine vision sensor. This is different from the original prototype with the Canon EOS R10 sensor whose bottleneck was the 0.3 FPS in reading dual-pixel (DP) images. To overcome the lack of off-the-shelf solutions for streaming DP images, we modified a machine vision sensor to enable capturing, reading, and processing DP images at 21 FPS. If you are using a Canon DP sensor instead and would like to extract dual-pixel images from Canon's Dual Pixel RAW image files, please refer to the [Extracting Dual-Pixel Views from Canon RAW Files](#extracting-dual-pixel-view-images-from-canon-raw-files) section below.
+> **Please read:** This repository contains the code for our real-time SVAF prototype that uses a custom-built dual-pixel (DP) camera based on a polarized machine vision sensor. This is different from the original prototype with the Canon EOS R10 sensor whose bottleneck was the 0.3 FPS in reading dual-pixel (DP) images. To overcome the lack of off-the-shelf solutions for streaming DP images, we modified a machine vision sensor to enable capturing, reading, and processing DP images at 21 FPS. If you are using a Canon DP sensor instead and would like to extract dual-pixel images from Canon's Dual Pixel RAW image files, please refer to the [Extracting the Dual-Pixel Views from Canon RAW Files](#extracting-the-dual-pixel-views-from-canon-raw-files) section below.
 
 This repository contains both (1) the code for running our autofocus algorithms, and (2) the PDAF hardware code for the real-time prototype, used for [Spatially-Varying Autofocus](https://imaging.cs.cmu.edu/svaf/). 
 
@@ -114,7 +114,7 @@ To make the split aperture, we can follow the steps below:
 8. Verify again with real scenes that 0 and 90 degrees see disparity images. Adjust the polarizer if needed.
 9. Done!
 
-## Extracting Dual-Pixel View Images from Canon RAW Files
+## Extracting the Dual-Pixel Views from Canon RAW Files
 
 If you are using a Canon camera with a dual-pixel (DP) sensor instead of the Lucid Vision PHX050S1-P/Q sensor, you can extract the left and right DP view images from `.CR3` RAW files using the `unprocessed_raw` command from the [LibRaw](https://www.libraw.org/) library.
 
